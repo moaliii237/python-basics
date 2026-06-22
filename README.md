@@ -1,72 +1,89 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/noimeMFp)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=15744660&assignment_repo_type=AssignmentRepo)
-# 2024-25-Y1A-Template-Repo
-## Creative Brief
+# Python Fundamentals and an SDG Power BI Dashboard (Year 1, Block A)
 
-The Sustainable Development Goals (SDGs) were established by the United Nations in 2015 to guide countries in achieving a sustainable future. These 17 global objectives encompass a wide range of areas, including poverty eradication, education, gender equality, economic growth, climate action, and environmental protection.
+This is the very first block of my Data Science and AI degree at Breda University of Applied Sciences (BUas), so it is also the first programming work I ever did. The repo has two parts. The first part is eight Jupyter notebooks where I learned and practiced Python from scratch: variables, conditionals, functions, loops, strings, lists, dictionaries, and tuples. The second part is the graded deliverable, an interactive Power BI dashboard that tracks United Nations Sustainable Development Goal (SDG) indicators around a research question I chose myself.
 
-The *__SDG Hub@BUas__*, referred to as the client, has reached out to you as an aspiring - *__data professional__* - to apply your expertise in providing data-driven solutions. In particular, they require your assistance in monitoring and assessing the advancements made towards the SDGs on a global and/or country-specific scale. 
+I am the sole author. I am keeping this in my portfolio on purpose, not because the code is advanced, but because it shows where I started and that I actually finished the exercises and the project.
 
-<img src="https://github.com/BredaUniversityADSAI/ADS-AI/tree/main/docs/Year1/BlockA/Images/SDGTeam.jpg" alt="Team SDG Hub@BUas" width="400"/>
+## What is in here
 
-*Figure 2. Team SDG Hub@BUas.*
+- Eight Python practice notebooks (numbered 1 to 8), with the exercises worked through.
+- A Power BI dashboard (`.pbix` files) on food prices and community health, built for the SDG brief.
+- The supporting documents I had to hand in: a CRISP-DM write-up, a research question, a learning log, a worklog, and a self assessment rubric (in the `Deliverables` folder).
+- Quiz screenshots and math practice from the weekly math and DataCamp work that ran alongside the block.
 
-The objective is to *__develop an interactive dashboard utilizing your newly acquired skills in data analytics and visualization__*. The dashboard will provide valuable insights to policymakers, researchers, and activists, enabling them to make informed decisions and take targeted actions towards the SDGs. Moreover, it will serve as a tool to raise awareness among the general public, inspiring collective efforts towards creating a more sustainable and equitable world.
+## The Python notebooks
 
-Good luck!
+These follow the course material, and I filled in the exercises. They are beginner level on purpose. A few things I actually wrote and understood:
 
-***
+- In `5. Strings.ipynb` I counted how many times a substring like `yo` appears in a sentence by lowercasing the text, splitting it into words, and looping with a counter. I also did the same letter-counting idea with `input()` so the user picks the word and the letter.
+- In `6. Lists.ipynb` I wrote `avg_calculator(numbers)` using `sum()` and `len()`, a `chop(lst)` function that removes the first and last item but handles the edge case of a one-item list, and `unique_words(x)` that returns each distinct word in a sentence by checking `if words not in a` before appending.
+- In `8. Tuples.ipynb` I worked with lists of `(name, score)` tuples. `total_scores` builds a dictionary that adds up each person's scores, `num_students` counts distinct names with a set comprehension, and `common_students` returns the names that appear in both course lists using set intersection (`&`).
 
-## Knowledge Modules
+### The F1-score function
 
-The ADS&AI program is structured into 8-week blocks. On Monday, Wednesday, and Thursday you work individually on the development of fundamental skills, which are needed to successfully complete the Creative brief. In *__DataLab__* (Also see [DataLab Attendance](https://adsai.buas.nl/General/DataLabAttendance.html)), scheduled on Tuesdays and Fridays, you apply your knowledge to the Creative Brief by completing a list of tasks, which you can find [here](https://adsai.buas.nl/Year1/BlockA/DataLabTasks.html). 
+The part of `3. Functions.ipynb` I am most happy I understood is the F1-score example. The notebook frames it as a sick / not-sick classifier, and the point was to learn functional decomposition.
 
-The block is further divided into two phases, centered around three *__knowledge modules__*:
+First I followed `f1_calculator(ground_truth, model_predictions)`, which loops over the predictions and counts true positives, false positives, and false negatives, then computes:
 
-- [Introduction to Artificial Intelligence](https://adsai.buas.nl/Study%20Content/Artificial%20Intelligence/)
-- [Introduction to Data Science](https://adsai.buas.nl/Study%20Content/DataScience/)
-- [Introduction to Programming with Python](https://adsai.buas.nl/Study%20Content/Programming/)
-- [Introduction to Mathematics](https://adsai.buas.nl/Study%20Content/MathY1A/)
+- precision = TP / (TP + FP)
+- recall = TP / (TP + FN)
+- F1 = 2 * precision * recall / (precision + recall)
 
-Below you can find the timeline overview of all the weeks in this block.
+Then the same logic is split into three smaller functions that call each other: one counts TP, FP, FN; the next uses it to get precision and recall; the last uses that to get the F1 score. That was my first time seeing why you break one function into smaller ones instead of writing everything in one block. I did not know it yet, but precision, recall, and F1 came back in later blocks for evaluating real models, so learning it here paid off.
 
-<img src="https://github.com/BredaUniversityADSAI/ADS-AI/tree/main/docs/Year1/BlockA/Images/TimelineYear12425.png" alt="Block A, Year 1, Overview" width="1000"/>
+## The graded project: SDG dashboard
 
-*Figure 3. Overview Block A, Year 1.*
+The DataLab deliverable was to pick a data-driven research question tied to the UN Sustainable Development Goals, gather the data, clean it, and build an interactive Power BI dashboard for it.
 
-### 1. Introduction to Artificial Intelligence (Week 1-3)
+My research question was: what is the correlation between increasing food prices and the overall health security of the community? I picked it because I am from Iran and I lived through high inflation, and I wanted to check whether the same pattern of rising prices and worse health shows up in other countries too. It maps to two SDG indicators, SDG 1 No Poverty and SDG 2 Zero Hunger, because in my reading inflation pushes people into poverty, and poverty leads to malnutrition.
 
-In the first three weeks of Block A, you will acquire foundational knowledge and understanding of the theories, principles, methods, and techniques related to the field of AI. For example, you will be made familiar with the philosophy, history, and taxonomy of AI, among others, by analyzing a Sci-Fi movie or (TV) series. In addition, we will teach you essential soft skills, such as presenting and citing sources.
+### My approach
 
-In DataLab II, Week 3, you are required to give a presentation where you identify and describe an AI topic in a Sci-Fi movie or (TV) series, and place it within the Taxonomy of AI. Additionally, you will need to evaluate the technical feasibility of the AI topic by critically assessing its possible application(s) within a real-life (business) setting. Furthermore, you will need to articulate potential ethical and/or legal implications of the AI application. Lastly, in order to meet the information needs of the presentation, you will need to acquire, evaluate, and use information from various popular and/or scholarly sources, such as blogs and scientific journal articles. 
+I followed the CRISP-DM steps for this (business understanding, data understanding, data preparation, modeling, evaluation, deployment), which are written up in the document in `Deliverables`.
 
-### 2. Introduction to Data Science (Week 4-7)
+- Data gathering. I pulled data from a few public sources: Statista, Our World in Data, and the WHO. The variables were things like worldwide inflation and average inflation per continent, a food price index over 10 years, total deaths from malnutrition, the share of people who cannot afford a healthy diet over 10 years, and life expectancy by country over 10 years.
+- Cleaning. Because the data came from different sources it did not line up, so this was the hard part. In Power Query I promoted the first row to headers, removed columns I did not need, removed rows with bad or inconsistent values, sorted everything by year (most of my comparisons are year on year), checked spelling so the same category matched across tables, and built relationships between the tables.
+- New features. Some columns were on very different scales, for example one was 0 to 100 and another was in the millions. I normalized those to a common 0 to 100 scale so I could actually compare them on the same chart.
+- Analysis and visuals. There was no machine learning here. It is descriptive analysis: correlation between inflation, food prices, and health outcomes, plus averages and medians across years and regions. I used line charts for the time series, stacked column charts to compare regions, and pie charts for distribution summaries.
 
-To change the world, we must first be able to measure it. Measuring and quantifying what matters is a crucial component of evaluating progress. In September 2015, all countries agreed to adopt specific goals as targets or indicators for global development. Collectively, these goals are known as the United Nations Sustainable Development Goals (SDGs). Many institutions, organizations, and companies have decided to adopt these goals. One of them is BUas, its aim is to become more sustainable as well, but how?
+### What I found and where it falls short
 
-To figure this out, you're going to track and explore global, country-level, or BUas-level progress towards the Sustainable Development Goals (SDGs) by leveraging data to gain insights into this progress and provide solutions related to sustainable development. Your responsibilities include framing a data-driven research question, gathering accurate data from the Sustainable Development Goals databank, conducting exploratory data analysis, analyzing and visualizing the data, interpreting the data to come up with your research findings, and ultimately presenting your conclusions to the client.
+My main takeaway was that the SDG indicators are connected, you cannot fix only one, and that there is a lot of inequality between countries. The dashboard does show the link I was looking for between inflation, poverty, and access to a healthy diet.
 
-Throughout this process, you will be applying concepts and tools learned in workshops, such as SDGTracker for problem formulation and Power BI for visualization. The culmination of your efforts will be the presentation of your findings through an intuitive user interface, with a live demonstration of your dashboard to the client, staff, and peers. This presentation will also include an opportunity for everyone to vote on the best dashboard. Let's delve into the details of each step and embark on this meaningful journey towards understanding and promoting sustainable development.
+Being honest about the limits: the research question was new to me and I had to stitch together data from several sources, so the comparisons are rough rather than statistically proven. There is no real correlation coefficient or statistical test behind it, it is visual correlation. If I redid it today I would add filters for things like age or income level, use more country-level detail, and try predictive models instead of only descriptive charts.
 
-This individual project [consists of the following steps](https://adsai.buas.nl/Year1/BlockA/DataLabTasks.html#task-2-define-a-data-driven-research-question).
+## Tech stack
 
-### 3. Introduction to Programming with Python (Week 1-7)
+- Python 3 in Jupyter notebooks for the programming exercises. Standard library only, plus `collections.Counter` in one tuples exercise.
+- Power BI Desktop for the dashboard, with Power Query for cleaning and shaping the data.
+- Data from Statista, Our World in Data, and the WHO.
 
-Data scientists use programming for a wide array of tasks, such as visualizing data, training machine learning models, and processing data. Therefore programming skills are indispensable for any data scientist. There are many different programming languages, for data science, Python is by far the most common one. Therefore, every Thursday in this Block until W7, you will study programming with Python. You can access the learning material from the timeline below or find everything [here](https://adsai.buas.nl/Study%20Content/Programming/) in one place.
+## How to run
 
-<img src="https://github.com/BredaUniversityADSAI/ADS-AI/tree/main/docs/Year1/BlockA/Images/kaggle_survey_v2.png" alt="Kaggle Survey" width="600"/>
+The Python notebooks:
 
-*Figure 4. "What programming languages do you use on a regular basis?" answered by 8902 data professionals on [Kaggle Survey 2022](https://www.kaggle.com/kaggle-survey-2022).*
+```
+pip install jupyter
+jupyter notebook
+```
 
-### 4. Introduction to Mathematics
+Then open any of the numbered `.ipynb` files and run the cells top to bottom. They do not need any data files, the examples are defined inside the notebooks.
 
-Mathematics is foundational to data science and artificial intelligence, as it forms the theoretical backbone for the algorithms and models that power these disciplines. Concepts from linear algebra and calculus are essential for understanding the methods and algorithms available. Linear algebra helps in managing and analyzing complex, high-dimensional data, while calculus allows for the optimization and fine-tuning of models. A solid grasp of mathematics not only enables data scientists and machine learning practitioners to develop more effective and robust models but also empowers them to innovate and adapt existing methods to solve complex real-world problems.
+The dashboard:
 
-In this block, you'll update your basic math skills, which are essential for understanding more advanced topics. This strong foundation will help you as we move on to more complex materials in data science and artificial intelligence in the later blocks. By mastering your math skills now, you'll be better prepared for the more challenging content ahead. To help you build this foundational math knowledge, we’ve provided 5 ungraded quizzes. Based on your scores, we’ll recommend specific courses to help you improve your math skills. For some students, completing the quizzes may be sufficient, but for others who need to strengthen their understanding, additional effort and learning will be necessary. In Week 6, you will take an exam to evaluate your knowledge. The grade from this exam will contribute 20% to your final grade for this block.
+- Open `SDG_IndicatorsDashboard_Mohammadali.pbix` (or the copies in `Deliverables`) in Power BI Desktop on Windows. There is no free viewer for `.pbix` other than Power BI Desktop.
+- The raw source data is not bundled in this repo. The cleaned data lives inside the `.pbix` file itself, so the visuals open without extra downloads, but you cannot fully reproduce the cleaning steps without the original source files.
+- `power bi (not ready yet).pbix` is an earlier work-in-progress version. The finished one is `SDG_IndicatorsDashboard_Mohammadali.pbix`.
 
-We highly recommend that, starting from Monday in Week 2 through Week 6, you take the related quiz to evaluate your knowledge. These quizzes are designed to assess your understanding of the material. If the quiz results indicate that you need to improve in certain areas, you'll have the entire week to review the recommended materials and enhance your understanding to the desired level before the next upcoming quiz/exam.
+## Repo layout
 
-You can see more details along with the related topics for each quiz [here](https://adsai.buas.nl/Study%20Content/MathY1A/).
+- `1. Variables.ipynb` ... `8. Tuples.ipynb` the eight Python practice notebooks.
+- `SDG_IndicatorsDashboard_Mohammadali.pbix` the final dashboard.
+- `DS1_Dashboard_Mohammadali.pbix`, `power bi (not ready yet).pbix` dashboard versions.
+- `Deliverables/` the graded hand-ins (CRISP-DM write-up, learning log, worklog, self assessment).
+- `Monday/`, `Tuesday/`, `Wednesday/` weekly evidence for the math, research, and DataLab tasks.
+- `*.png`, `*.pdf` quiz results and practice evidence collected during the block.
 
-***
+## Note
 
+This is first-block, beginner work. I am not presenting it as production code. I keep it here as the honest starting point of my degree and as proof that I showed up, did the exercises, and shipped the dashboard.
